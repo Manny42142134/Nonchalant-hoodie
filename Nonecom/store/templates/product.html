@@ -1,0 +1,100 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<div class="container px-4 px-lg-5 mt-5">
+  <div class="row gx-4 gx-lg-5 align-items-start">
+
+    <!-- Image / Sale badge -->
+    <div class="col-md-6 mb-5">
+  <div class="card h-100 position-relative">
+
+    {% if product.on_sale %}
+      <span class="badge bg-dark text-white position-absolute top-0 end-0 m-2">Sale</span>
+    {% endif %}
+
+    {% if product.image or product.image_back %}
+      <div id="productCarousel" class="carousel slide" data-bs-ride="carousel">
+        <!-- Indicators -->
+        {% if product.image and product.image_back %}
+          <div class="carousel-indicators">
+            <button type="button" data-bs-target="#productCarousel" data-bs-slide-to="0"
+                    class="active" aria-current="true" aria-label="Slide 1"></button>
+            <button type="button" data-bs-target="#productCarousel" data-bs-slide-to="1"
+                    aria-label="Slide 2"></button>
+          </div>
+        {% endif %}
+
+        <!-- Slides -->
+        <div class="carousel-inner">
+          {% if product.image %}
+            <div class="carousel-item active">
+              <div class="ratio" style="--bs-aspect-ratio: 110%;">  
+              <img src="{{ product.image.url }}"  class="w-100 h-100 rounded d-block"  style="object-fit: cover;" alt="{{ product.name }} front"> </div>
+            </div>
+          {% endif %}
+
+          {% if product.image_back %}
+            <div class="carousel-item {% if not product.image %}active{% endif %}">
+              <img src="{{ product.image_back.url }}" class="d-block w-100 rounded d-block" alt="{{ product.name }} back">
+            </div>
+          {% endif %}
+        </div>
+
+        <!-- Controls (only if there are 2 slides) -->
+        {% if product.image and product.image_back %}
+          <button class="carousel-control-prev" type="button" data-bs-target="#productCarousel" data-bs-slide="prev">
+            <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+            <span class="visually-hidden">Previous</span>
+          </button>
+          <button class="carousel-control-next" type="button" data-bs-target="#productCarousel" data-bs-slide="next">
+            <span class="carousel-control-next-icon" aria-hidden="true"></span>
+            <span class="visually-hidden">Next</span>
+          </button>
+        {% endif %}
+      </div>
+    {% else %}
+      <div class="bg-light border rounded p-5 text-center text-muted">No image available</div>
+    {% endif %}
+
+  </div>
+</div>
+
+    <!-- Details -->
+    <div class="col-md-6">
+      <h1 class="display-6 fw-bold mb-2">{{ product.name }}</h1>
+
+      {% if product.category %}
+        <p class="text-muted mb-3">{{ product.category.name }}</p>
+      {% endif %}
+
+      <!-- Pricing -->
+      {% if product.on_sale and product.sale_price %}
+        <div class="mb-3">
+          <span class="text-muted text-decoration-line-through">${{ product.price }}</span>
+          <span class="fs-4 ms-2">${{ product.sale_price }}</span>
+        </div>
+      {% else %}
+        <div class="mb-3">
+          <span class="fs-4">${{ product.price }}</span>
+        </div>
+      {% endif %}
+
+      {% if product.description %}
+        <p class="mb-4">{{ product.description }}</p>
+      {% endif %}
+
+      {% if product.size %}
+        <p class="mb-4"><strong>Size:</strong> {{ product.size }}</p>
+      {% endif %}
+
+      <!-- Actions -->
+      <div class="d-flex gap-2">
+        <a href="{% url 'home' %}" class="btn btn-outline-dark">← Back to shop</a>
+        <!-- TODO: wire this to your cart route or form -->
+        <a href="#" class="btn btn-outline-dark">Add to cart</a>
+      </div>
+    </div>
+
+  </div>
+</div>
+{% endblock %}

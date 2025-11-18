@@ -1,0 +1,103 @@
+{% extends 'base.html' %}
+
+{% block content %}
+
+<header class="bg-dark py-5">
+  <div class="container px-4 px-lg-5 my-5">
+    <div class="text-center text-white">
+      <h1 class="display-4 fw-bolder">{{ category.name|default:category }}</h1>
+      <p class="lead text-white-50 mb-0">Category Page</p>
+    </div>
+  </div>
+</header>
+
+<section class="py-5">
+  <div class="container px-4 px-lg-5 mt-5">
+
+    {% if products %}
+      <div class="row gx-4 gx-lg-5 row-cols-2 row-cols-md-3 row-cols-xl-4 justify-content-center">
+
+        {% for product in products %}
+          <div class="col mb-5">
+            <div class="card h-100 position-relative">
+
+              {% if product.on_sale %}
+                <span class="badge bg-dark text-white position-absolute" style="top:.5rem;right:.5rem;">Sale</span>
+              {% endif %}
+
+              {% if product.image %}
+                <img class="card-img-top" src="{{ product.image.url }}" alt="{{ product.name }}">
+              {% else %}
+                <div class="bg-light border rounded p-5 text-center text-muted">No image available</div>
+              {% endif %}
+
+              <div class="card-body p-4">
+                <div class="text-center">
+                  <h5 class="fw-bolder">{{ product.name }}</h5>
+
+                  {% if product.on_sale and product.sale_price %}
+                    <div>
+                      <span class="text-muted text-decoration-line-through">${{ product.price }}</span>
+                      <span class="ms-2">${{ product.sale_price }}</span>
+                    </div>
+                  {% else %}
+                    <div>${{ product.price }}</div>
+                  {% endif %}
+                </div>
+              </div>
+
+              <div class="card-footer p-4 pt-0 border-top-0 bg-transparent">
+                <div class="text-center">
+                  <a class="btn btn-outline-dark mt-auto" href="{% url 'product' product.pk %}">View Product</a>
+                </div>
+              </div>
+
+            </div>
+          </div>
+        {% endfor %}
+
+      </div>
+
+    {% else %}
+      <!-- Fancy Coming Soon / Loading state -->
+      <div class="text-center my-5">
+        <div class="mb-3">
+          <div class="spinner-border" role="status" aria-hidden="true"></div>
+        </div>
+        <h2 class="fw-bold mb-2">Coming Soon</h2>
+        <p class="text-muted">Our {{ category.name|default:category }} are on the way. Check back shortly.</p>
+      </div>
+
+      <!-- Pretty placeholders so the grid doesn’t look empty -->
+      <div class="row gx-4 gx-lg-5 row-cols-2 row-cols-md-3 row-cols-xl-4">
+        {% for _ in "1234" %}
+          <div class="col mb-5">
+            <div class="card h-100">
+              <div class="card-img-top placeholder-wave bg-light" style="height: 200px;"></div>
+              <div class="card-body p-4">
+                <div class="text-center">
+                  <h5 class="placeholder-glow mb-2">
+                    <span class="placeholder col-8"></span>
+                  </h5>
+                  <div class="placeholder-glow">
+                    <span class="placeholder col-4"></span>
+                  </div>
+                </div>
+              </div>
+              <div class="card-footer p-4 pt-0 border-top-0 bg-transparent">
+                <div class="text-center">
+                  <a class="btn btn-outline-dark disabled" href="#" tabindex="-1" aria-disabled="true">View Product</a>
+                </div>
+              </div>
+            </div>
+          </div>
+        {% endfor %}
+      </div>
+    {% endif %}
+   <a href="{% url 'category_summary' %}" class="btn btn-outline-dark mt-2">
+    ← Back to Categories
+  </a>
+  </div>
+</section>
+
+{% endblock %}

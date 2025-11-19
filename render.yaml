@@ -1,0 +1,11 @@
+services: 
+  - type: web 
+    name: nonchalant-hoodie 
+    env: python 
+    buildCommand: pip install -r requirements.txt 
+    startCommand: gunicorn Nonecom.wsgi 
+    envVars: 
+      - key: PYTHON_VERSION 
+        value: 3.10.14 
+      - key: POETRY_ENABLED 
+        value: false 

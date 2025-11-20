@@ -26,7 +26,7 @@ SECRET_KEY = 'django-insecure-&hoiw!ozpnm4((ihfe01sg+f0ro(jnh(f&(=8x7^m=m8jt%fp0
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = ['https://nonchalant-hoodie.onrender.com/']
+ALLOWED_HOSTS = ['nonchalant-hoodie.onrender.com']
 
 
 # Application definition
@@ -50,6 +50,7 @@ MIDDLEWARE = [
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
+    'whitenoise.middleware.WhiteNoiseMiddleware',
 ]
 
 ROOT_URLCONF = 'Nonecom.urls'

@@ -26,8 +26,12 @@ SECRET_KEY = 'django-insecure-&hoiw!ozpnm4((ihfe01sg+f0ro(jnh(f&(=8x7^m=m8jt%fp0
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = ['nonchalant-hoodie.onrender.com']
 
+ALLOWED_HOSTS = [
+    '127.0.0.1',
+    'localhost',
+    'nonchalant-hoodie.onrender.com',  # keep your Render domain here
+]
 
 # Application definition
 

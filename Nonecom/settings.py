@@ -26,7 +26,7 @@ SECRET_KEY = 'django-insecure-&hoiw!ozpnm4((ihfe01sg+f0ro(jnh(f&(=8x7^m=m8jt%fp0
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = ['*']
+ALLOWED_HOSTS = ['https://nonchalant-hoodie.onrender.com/']
 
 
 # Application definition
@@ -72,6 +72,8 @@ TEMPLATES = [
 ]
 
 WSGI_APPLICATION = 'Nonecom.wsgi.application'
+
+
 
 
 # Database

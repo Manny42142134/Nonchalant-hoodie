@@ -1,7 +1,4 @@
-django
-gunicorn
-<<<<<<< HEAD
-Pillow
-=======
-Pillow
->>>>>>> 1aaa1030e95a6e0c87e555658cd307043762d158
+Django>=5.0
+gunicorn>=21.2
+Pillow>=11.0
+whitenoise>=6.6

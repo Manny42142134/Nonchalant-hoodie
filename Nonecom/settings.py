@@ -26,15 +26,12 @@ SECRET_KEY = 'django-insecure-&hoiw!ozpnm4((ihfe01sg+f0ro(jnh(f&(=8x7^m=m8jt%fp0
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-<<<<<<< HEAD
-
-=======
->>>>>>> 80a1241 (Configure static/media folders and product images)
 ALLOWED_HOSTS = [
     '127.0.0.1',
     'localhost',
-    'nonchalant-hoodie.onrender.com',  # keep your Render domain here
+    'nonchalant-hoodie.onrender.com',  # Render domain
 ]
+
 
 # Application definition
 
@@ -73,15 +70,13 @@ TEMPLATES = [
                 'django.template.context_processors.request',
                 'django.contrib.auth.context_processors.auth',
                 'django.contrib.messages.context_processors.messages',
-                'store.context_processors.site_settings', 
+                'store.context_processors.site_settings',
             ],
         },
     },
 ]
 
 WSGI_APPLICATION = 'Nonecom.wsgi.application'
-
-
 
 
 # Database
@@ -131,17 +126,16 @@ USE_TZ = True
 
 STATIC_URL = '/static/'
 
+# This assumes you have a folder:  <project root>/static
 STATICFILES_DIRS = [
-<<<<<<< HEAD
-    BASE_DIR / "Nonecom" / "static",
-=======
     BASE_DIR / "static",
->>>>>>> 80a1241 (Configure static/media folders and product images)
 ]
 
 STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')
+
 MEDIA_URL = '/media/'
 MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
+
 
 # Default primary key field type
 # https://docs.djangoproject.com/en/5.0/ref/settings/#default-auto-field
